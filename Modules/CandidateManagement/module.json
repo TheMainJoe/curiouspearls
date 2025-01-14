@@ -1,0 +1,11 @@
+{
+    "name": "CandidateManagement",
+    "alias": "candidatemanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CandidateManagement\\Providers\\CandidateManagementServiceProvider"
+    ],
+    "files": []
+}

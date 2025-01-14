@@ -1,0 +1,11 @@
+{
+    "name": "SubscriptionManagement",
+    "alias": "subscriptionmanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SubscriptionManagement\\Providers\\SubscriptionManagementServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,11 @@
+{
+    "name": "ATS",
+    "alias": "ats",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ATS\\Providers\\ATSServiceProvider"
+    ],
+    "files": []
+}

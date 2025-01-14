@@ -1,0 +1,11 @@
+{
+    "name": "InterviewScheduling",
+    "alias": "interviewscheduling",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\InterviewScheduling\\Providers\\InterviewSchedulingServiceProvider"
+    ],
+    "files": []
+}

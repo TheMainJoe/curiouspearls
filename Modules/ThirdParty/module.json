@@ -1,0 +1,11 @@
+{
+    "name": "ThirdParty",
+    "alias": "thirdparty",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ThirdParty\\Providers\\ThirdPartyServiceProvider"
+    ],
+    "files": []
+}

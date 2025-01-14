@@ -1,0 +1,11 @@
+{
+    "name": "ResumeParsing",
+    "alias": "resumeparsing",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ResumeParsing\\Providers\\ResumeParsingServiceProvider"
+    ],
+    "files": []
+}

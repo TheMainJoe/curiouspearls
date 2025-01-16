@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('m_applications', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('job_id')->constrained('m_jobs')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('status')->default('submitted'); // submitted, reviewed, hired, rejected
             $table->timestamps();
         });
     }

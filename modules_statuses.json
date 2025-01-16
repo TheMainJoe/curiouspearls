@@ -3,21 +3,16 @@
     "CandidateManagement": true,
     "InterviewScheduling": true,
     "Analytics": true,
-    "Admin": true,
     "ATS": true,
     "Assessments": true,
-    "Dashboard": true,
-    "SubscriptionManagement": true,
     "ResumeParsing": true,
     "Interview": true,
     "Referrals": true,
     "Onboarding": true,
     "ThirdParty": true,
     "DocumentManagement": true,
-    "TenantManagement": true,
     "ModuleAccessControl": true,
     "Collaboration": true,
     "Payroll": true,
-    "HumanResource": true,
-    "Clients": true
+    "HumanResource": true
 }

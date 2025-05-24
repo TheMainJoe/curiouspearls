@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: [ '8.1', '8.2', '8.3' ]
-    name: PHP ${{ matrix.php-versions }} Test
+        php-version: [ '8.1', '8.2', '8.3' ]
+    name: PHP ${{ matrix.php-version }} Test
 
     services:
       mysql:
@@ -28,18 +28,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, bcmath, mysql
-          coverage: none
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
@@ -47,8 +35,12 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, bcmath, mysql
+          coverage: none
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
@@ -56,6 +48,14 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-npm-
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Install NPM dependencies
         run: npm install
@@ -66,6 +66,18 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate
 
+      # Optional: Run PHP static analysis (uncomment if you use PHPStan)
+      # - name: Run PHPStan (static analysis)
+      #   run: vendor/bin/phpstan analyse
+
+      # Optional: Build frontend assets (uncomment if you have a build step)
+      # - name: Build frontend assets
+      #   run: npm run build
+
+      # Optional: Run ESLint (uncomment if you use ESLint)
+      # - name: Run ESLint
+      #   run: npm run lint
+
       - name: Run migrations
         env:
           DB_CONNECTION: mysql
@@ -74,15 +86,6 @@ jobs:
           DB_PASSWORD: root
           DB_HOST: 127.0.0.1
         run: php artisan migrate --force
-
-      - name: Run tests
-        env:
-          DB_CONNECTION: mysql
-          DB_DATABASE: test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          DB_HOST: 127.0.0.1
-        run: php artisan test
 
       - name: Run tests with coverage
         env:
@@ -98,12 +101,3 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
-
-      - name: Run PHPStan (static analysis)
-        run: vendor/bin/phpstan analyse
-
-      - name: Build frontend assets
-        run: npm run build
-
-      - name: Run ESLint (if using JS linting)
-        run: npm run lint

@@ -40,7 +40,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, bcmath, mysql
-          coverage: none
+          coverage: xdebug
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
